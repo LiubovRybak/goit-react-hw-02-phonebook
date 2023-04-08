@@ -1,9 +1,9 @@
 import { Component } from 'react';
-import css from './module.css';
 
 export class Form extends Component {
   state = {
     name: '',
+    number: '',
   };
 
   handleInput = e => {
@@ -18,11 +18,11 @@ export class Form extends Component {
   };
 
   reset = () => {
-    this.setState({ name: '' });
+    this.setState({ name: '', number: '' });
   };
 
   render() {
-    const { name } = this.state;
+    const { name, number } = this.state;
     return (
       <form className="form" autoComplete="off" onSubmit={this.handleSubmit}>
         <label>
@@ -35,6 +35,18 @@ export class Form extends Component {
             required
             onChange={this.handleInput}
             value={name}
+          />
+        </label>
+        <label>
+          Number
+          <input
+            type="tel"
+            name="number"
+            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            required
+            onChange={this.handleInput}
+            value={number}
           />
         </label>
         <button type="submit">Add contact</button>
